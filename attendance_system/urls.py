@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse  # Yeni eklendi!
+
+# Basit bir ana sayfa görünümü
+def home(request):
+    return HttpResponse("Welcome to the Attendance System!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('employees/', include('employees.urls')),  # Employees uygulamasını ekledik!
+    path('employees/', include('employees.urls')),
+
+    # Ana sayfa URL'sini ekle
+    path('', home),
 ]
